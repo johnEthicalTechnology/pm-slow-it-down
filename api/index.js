@@ -1,25 +1,18 @@
 function sleep(millis) {
 
-  return new Promise(resolve => setTimeout(resolve, millis));
+  return new Promise(resolve => setTimeout(resolve, millis))
 
 }
 
 module.exports = async (req, res) => {
-  let parsed
-  try {
-    // parsed = JSON.parse(req.parser)
+  // try {
 
-    console.log('req', req.query);
-    console.log('req.body', req.body);
-    console.log('req.parser', req.parser);
 
-  await sleep(Number.parseInt(req.body));
+  // } catch (error) {
+  //   console.log('errors', error)
+  // }
+  console.log('Timeout length', req.query.time)
+  await sleep(Number.parseInt(req.query.time))
 
-  // res.json({body: `Waited ${parsed} second`});
-  } catch (error) {
-    console.log('req', req.parser);
-    console.log('parsed', req.body);
-    console.log('errors again', error)
-  }
-
+  res.json({body: `Waited ${req.query.time / 1000} second`, responseCode: 200})
 }
