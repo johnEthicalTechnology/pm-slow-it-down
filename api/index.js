@@ -6,14 +6,15 @@ function sleep(millis) {
 
 module.exports = async (req, res) => {
   try {
-    console.log('req.body.time', req.body.time);
+    console.log('req.body.time', req.body);
 
-  const finished = await sleep(Number.parseInt(req.body.time));
+  const finished = await sleep(Number.parseInt(req.body.data));
 
   console.log('finished', finished);
-  res.json({body: `Waited ${req.body.time} second`});
+  res.json({body: `Waited ${req.body.data} second`});
   } catch (error) {
-    console.log('error', error)
+    console.log('req', req);
+    console.log('errors again', error)
   }
 
 }
