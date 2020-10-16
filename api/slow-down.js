@@ -5,9 +5,15 @@ function sleep(millis) {
 }
 
 module.exports = async (req, res) => {
+  try {
+    console.log('req.body.time', req.body.time);
 
-  await sleep(Number.parseInt(req.body.time));
+  const finished = await sleep(Number.parseInt(req.body.time));
 
+  console.log('finished', finished);
   res.json({body: `Waited ${req.body.time} second`});
+  } catch (error) {
+    console.log('error', error)
+  }
 
 }
